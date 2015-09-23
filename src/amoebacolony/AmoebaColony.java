@@ -18,12 +18,17 @@ public class AmoebaColony {
     public String colonyName;
     public String caretakerName;
     public int startAmoeba;
+    public int nextAmoeba;
     public int daysFed;
     public int amountBreed;
-    public boolean breedSuccess;
-    public boolean vitamins;
-    public boolean colonyname;
+    public double finalAmoeba;
+    public double amountDied;
     public int yesnoVitamins;
+    public int breedSuccessNumber;
+    public boolean vitamins;
+    public boolean sick;
+    public boolean colonyname;
+    
         
     
     public void setColonyProperties(){
@@ -48,22 +53,74 @@ public class AmoebaColony {
                 + "\n Note: They need one day of food for each time they breed.",
                 "Feeding", JOptionPane.INFORMATION_MESSAGE));
         amountBreed = Integer.parseInt(JOptionPane.showInputDialog(null, "How many times would you like to breed your colony?"
-                + "\n Note: Every time they breed requires 1 day worth of food."
+                + "\n Note: Each successful breed doubles your colony's size."
+                + "\n Every time they breed requires 1 day worth of food."
                 + "\n You have chosen to feed your colony " + daysFed + " time(s).",
                 "Breeding", JOptionPane.INFORMATION_MESSAGE));
         yesnoVitamins = JOptionPane.showConfirmDialog(null, "Would you like to give your colony vitamins?"
                 + "\n Note: giving vitamins reduces the chance of your colony getting sick.", "Vitamins", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
         
-        
     }
     
     public void setBreeding(){
         if  (daysFed >= amountBreed){
-            breedSuccess = true;
+            breedSuccessNumber = amountBreed;
         }
         else{
-            breedSuccess = false;
+            breedSuccessNumber = daysFed;
+        }
+        nextAmoeba = startAmoeba * 2;
+    }
+    
+    public void setVitamins(){
+        
+        if (yesnoVitamins == JOptionPane.YES_OPTION){
+            vitamins = true;
+            
+        }else if(yesnoVitamins ==JOptionPane.NO_OPTION){
+            vitamins = false;
+        }
+          
+        }
+        
+    public void setSickness(){
+            
+        Random r = new Random();  	
+        int x = 1 + r.nextInt(100);
+        
+        if(vitamins == true){
+        
+            if(x <= 20){
+            sick = true;
+            }
+            else{
+            sick = false;
+            }    
         }
     
+        else{
+            
+            if(x <= 25){
+            sick = true;
+            }
+            else{
+            sick = false;
+            }
+        }
     }
+    
+    public void setDeath(){
+        
+        if(sick == true){
+            finalAmoeba = nextAmoeba * .10;
+        }
+        else{
+            finalAmoeba = nextAmoeba;
+        }
+            
+        amountDied = nextAmoeba - finalAmoeba; 
+            
+    }
+    
+    
 }
