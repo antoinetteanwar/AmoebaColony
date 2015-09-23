@@ -15,13 +15,15 @@ import java.util.Random;
 public class AmoebaColony {
     
     
-    private String colonyName;
-    private String caretakerName;
-    private int startAmoeba;
-    private int daysFed;
-    private int breed;
-    private boolean vitamins;
-    private boolean colonyname;
+    public String colonyName;
+    public String caretakerName;
+    public int startAmoeba;
+    public int daysFed;
+    public int amountBreed;
+    public int breedSuccess;
+    public boolean vitamins;
+    public boolean colonyname;
+    public int yesnoVitamins;
         
     
     public void setColonyProperties(){
@@ -32,15 +34,33 @@ public class AmoebaColony {
         
         colonyName = JOptionPane.showInputDialog("What would you like to name your colony?");
         caretakerName = JOptionPane.showInputDialog("What is your name, caretaker?");
-        startAmoeba = Integer.parseInt(JOptionPane.showInputDialog("How many amoebas would you like to start with?\n Note: 1 day of food for each time colony breeds!"));
+        startAmoeba = Integer.parseInt(JOptionPane.showInputDialog("How many amoebas would you like to start with?"));
         
     }
     
     public void setActions(){
-        JOptionPane.showMessageDialog(null, "Congratluations, you've created your amoeba colony, " + colonyName + ", of " + startAmoeba + " amoebas!", colonyName, JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(null, "Now you can feed your colony, breed your colony, and give them vitamins to prevent sickness!" , colonyName, JOptionPane.INFORMATION_MESSAGE);
-
+        
+        JOptionPane.showMessageDialog(null, "Congratluations, " + caretakerName+ ", you've created your amoeba colony, " + colonyName + ", of " + startAmoeba + " amoebas!", 
+                colonyName, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Now you can feed your colony, breed your colony, and give them vitamins to prevent sickness!" , 
+                colonyName, JOptionPane.INFORMATION_MESSAGE);
+        daysFed = Integer.parseInt(JOptionPane.showInputDialog(null, "How many days would you like to feed your colony?"
+                + "\n Note: They need one day of food for each time they breed.",
+                "Feeding", JOptionPane.INFORMATION_MESSAGE));
+        amountBreed = Integer.parseInt(JOptionPane.showInputDialog(null, "How many times would you like to breed your colony?"
+                + "\n Note: Every time they breed requires 1 day worth of food."
+                + "\n You have chosen to feed your colony " + daysFed + " time(s).",
+                "Breeding", JOptionPane.INFORMATION_MESSAGE));
+        yesnoVitamins = JOptionPane.showConfirmDialog(null, "Would you like to give your colony vitamins?"
+                + "\n Note: giving vitamins reduces the chance of your colony getting sick.", "Vitamins", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
+        
         
     }
     
+    public void setBreeding(){
+        if (daysFed >= amountBreed){
+            breedSuccess = amountBreed
+        }
+    
+    }
 }
