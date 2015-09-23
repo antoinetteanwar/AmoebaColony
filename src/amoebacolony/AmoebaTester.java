@@ -18,6 +18,7 @@ public class AmoebaTester {
             newColony.setVitamins();
             newColony.setSickness();
             newColony.setDeath();
+            newColony.finalOutput();
             
         }catch (NumberFormatException e){   
             JOptionPane.showMessageDialog(null, "You entered incorrect or incomplete information!", "Error", JOptionPane.ERROR_MESSAGE);
