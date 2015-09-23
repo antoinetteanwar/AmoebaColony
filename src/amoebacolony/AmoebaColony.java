@@ -20,7 +20,7 @@ public class AmoebaColony {
     public int startAmoeba;
     public int daysFed;
     public int amountBreed;
-    public int breedSuccess;
+    public boolean breedSuccess;
     public boolean vitamins;
     public boolean colonyname;
     public int yesnoVitamins;
@@ -58,8 +58,11 @@ public class AmoebaColony {
     }
     
     public void setBreeding(){
-        if (daysFed >= amountBreed){
-            breedSuccess = amountBreed
+        if  (daysFed >= amountBreed){
+            breedSuccess = true;
+        }
+        else{
+            breedSuccess = false;
         }
     
     }
