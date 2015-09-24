@@ -71,9 +71,13 @@ public class AmoebaColony {
             breedSuccessNumber = daysFed;
             //if days fed smaller that breed request, will only breed amount of days fed
         }
-        nextAmoeba = (startAmoeba * 2)^(breedSuccessNumber);
-        //nextAmoeba *= Math.pow(2, breedSuccessNumber);
-        }//amount after breed = ^
+        int previousAmoeba = startAmoeba;
+        for (int i = 0; i < breedSuccessNumber; i++){
+            nextAmoeba = previousAmoeba * 2;
+            previousAmoeba = nextAmoeba;
+        }
+        nextAmoeba = nextAmoeba;
+    }
     
     public void setVitamins(){
         
